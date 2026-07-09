@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FrameMaker Sample — Telecom Hardware User Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:#020408;--bg2:#080d14;--bg3:#0c1420;--surface:#0f1a28;--surface2:#162233;
+    --border:rgba(0,200,255,0.1);--border2:rgba(0,200,255,0.28);
+    --cyan:#00c8ff;--cyan2:#00e5ff;--gold:#f0b429;--gold2:#ffd166;
+    --green:#00ffb3;--pink:#ff4d8d;--violet:#a78bfa;
+    --text:#e8f4f8;--text2:#8baab8;--text3:#4d7a8a;
+    --ff-d:'Cormorant Garamond',serif;--ff-u:'Syne',sans-serif;--ff-m:'DM Mono',monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--ff-u);overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9990;opacity:0.5}
+
+/* ── TOP BAR ── */
+.topbar{
+  background:rgba(5,8,16,0.97);
+  border-bottom:1px solid rgba(99,179,237,0.15);
+  padding:0 2% 0 1%;;height:66px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:9999;
+  backdrop-filter:blur(24px);flex-shrink:0;
+  font-family: 'Inter', sans-serif;
+  transition: transform 0.3s ease;
+}
+.topbar.hide {
+  transform: translateY(-100%);}
+.topbar-left{display:flex;align-items:center;gap:0.4rem;}
+.topbar-right{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-left:auto;}
+.back-btn{display:inline-flex;align-items:center;gap:1px;color:var(--text2);text-decoration:none;font-size:.82rem;letter-spacing:.06em;transition:color .2s;font-family: 'Inter', sans-serif;}
+.back-btn:hover{color:#464849;}
+.topbar-divider{width:1px;height:24px;background:rgba(255,255,255,0.1);}
+.topbar-brand{
+  font-family:'Inter',sans-serif;font-size:1.2rem;font-weight:630;
+  letter-spacing:-0.01em;
+}
+.grad{
+  background:linear-gradient(135deg,#811adc,#ede1e8);
+  background-clip: text;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+
+/* ── Disclaimer ── */
+.hero-disc{
+  background:
+    linear-gradient(135deg,rgba(0,212,255,0.06) 0%,rgba(123,97,255,0.07) 50%,transparent 100%),
+    radial-gradient(ellipse 50% 70% at 85% 60%,rgba(0,255,170,0.04),transparent);
+  border-bottom:1px solid rgba(99,179,237,0.1);
+  padding:0.3rem 5% 0.3rem;flex-shrink:0;
+  position:relative;overflow:hidden;
+}
+.full-width-disclaimer {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.5rem;
+  color: #f4f8f7 !important;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Meta pill */
+.meta-pill{
+  display:flex;align-items:center;gap:0.45rem;
+  padding:0.42rem 1rem;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);border-radius:8px;
+  font-size:0.82rem;color:#8892b0;transition:border-color 0.2s;
+}
+.meta-pill:hover{border-color:rgba(0,212,255,0.18);}
+.meta-pill strong{color:#ccd6f6;}
+.mdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.md-b{background:#00d4ff;box-shadow:0 0 7px #00d4ff;}
+.md-p{background:#7b61ff;box-shadow:0 0 7px #7b61ff;}
+
+
+  /* HERO */
+  .page-hero{min-height:80px;display:flex;align-items:center;padding:5px 2px 20px 100px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0d0820 0%,#1a0a2e 40%,var(--bg) 100%)}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(167,139,250,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,.04) 1px,transparent 1px);background-size:50px 50px}
+  .hero-glow{position:absolute;top:0;right:10%;width:500px;height:300px;background:radial-gradient(circle,rgba(167,139,250,.1) 0%,transparent 70%);pointer-events:none}
+  .hero-content{position:relative;z-index:2}
+  .hero-eyebrow{font-family:var(--ff-m);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--violet);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+  .hero-eyebrow::before{content:'';display:block;width:30px;height:1px;background:var(--violet)}
+  .hero-title{font-family:var(--ff-d);font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.1}
+  .hero-sub{font-size:.95rem;color:var(--text2);max-width:600px;line-height:1.75}
+  .hero-badges{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .hbadge{font-family:var(--ff-m);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border:1px solid;border-radius:0}
+
+  /* MAIN */
+  main{max-width:1100px;margin:0 auto;padding:60px 60px 100px}
+
+  /* DOWNLOAD SECTION */
+  .download-section{background:var(--surface);border:1px solid var(--border2);padding:48px;margin-bottom:48px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .download-section::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--violet),rgba(167,139,250,.3),transparent)}
+  .dl-label{font-family:var(--ff-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);margin-bottom:12px}
+  .dl-title{font-family:var(--ff-d);font-size:1.8rem;font-weight:600;color:var(--text);margin-bottom:10px}
+  .dl-desc{font-size:.9rem;color:var(--text2);line-height:1.75;max-width:520px}
+  .dl-meta{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap}
+  .dl-meta-item{display:flex;align-items:center;gap:7px;font-family:var(--ff-m);font-size:.72rem;color:var(--text3);letter-spacing:.06em}
+  .dl-meta-dot{width:5px;height:5px;border-radius:50%;background:var(--violet)}
+  .btn-download{font-family:var(--ff-m);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;background:var(--violet);color:#fff;border:none;padding:14px 28px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .3s;margin-top:12px}
+  .btn-download:hover{background:var(--cyan);color:var(--bg);transform:translateY(-2px)}
+  .btn-download svg{width:18px;height:18px;flex-shrink:0}
+  .btn-download-secondary{font-family:var(--ff-m);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--violet);border:1px solid rgba(167,139,250,.4);padding:14px 28px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .3s;margin-top:12px}
+  .btn-download-secondary:hover{border-color:var(--violet);background:rgba(167,139,250,.06)}
+
+  main {
+  max-width: 100%;
+  padding: 0.5px;
+  height: auto;   /* remove side spacing */
+}
+  /* PDF Viewer*/
+  .pdf-viewer{
+  width:100%;
+  height: 95vh; /* adjust based on your topbar + hero */
+  margin-top:0;               /* no gap */
+}
+
+.pdf-viewer iframe{
+  width:100%;
+  height:100%;
+  border:none
+}
+
+  /* INFO CARDS */
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+  .info-card{background:var(--surface);border:1px solid var(--border);padding:24px;position:relative;overflow:hidden}
+  .info-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--violet);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+  .info-card:hover::after{transform:scaleX(1)}
+  .ic-label{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:7px}
+  .ic-val{font-family:var(--ff-d);font-size:1.4rem;color:var(--violet)}
+  .ic-desc{font-size:.82rem;color:var(--text3);margin-top:4px}
+
+  /* FILE LIST */
+  .file-list{background:var(--surface);border:1px solid var(--border);overflow:hidden;margin-bottom:48px}
+  .file-list-header{background:var(--surface2);border-bottom:1px solid var(--border);padding:14px 24px;font-family:var(--ff-m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
+  .file-item{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--border);transition:background .2s}
+  .file-item:last-child{border-bottom:none}
+  .file-item:hover{background:var(--surface2)}
+  .file-info{display:flex;align-items:center;gap:12px}
+  .file-icon{font-size:1.3rem}
+  .file-name{font-family:var(--ff-m);font-size:.82rem;color:var(--text)}
+  .file-ext{font-family:var(--ff-m);font-size:.68rem;color:var(--text3);margin-top:2px}
+  .file-size{font-family:var(--ff-m);font-size:.7rem;color:var(--text3)}
+
+  /* FOOTER */
+  footer{background:var(--bg);border-top:1px solid var(--border);padding:10px 40px;display:flex;align-items:center;justify-content:space-between}
+  .footer-copy{font-family:var(--ff-m);font-size:.66rem;letter-spacing:.08em;color:var(--text3)}
+  .footer-link{font-family:var(--ff-m);font-size:.66rem;letter-spacing:.08em;color:var(--cyan);text-decoration:none}
+  .footer-link:hover{text-decoration:underline}
+
+  @media(max-width:900px){
+    nav{padding:0 24px}
+    .page-hero{padding:80px 24px 48px}
+    main{padding:40px 24px 80px}
+    .download-section{grid-template-columns:1fr}
+    .info-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </a>
+    <div class="topbar-divider"></div>
+    <div class="topbar-brand"><span class="grad">SM.</span></div>
+  </div>
+  <div class="topbar-right">
+    <div class="meta-pill"><div class="mdot md-b"></div><span>Tool: <strong>Adobe FrameMaker</strong></span></div>
+    <div class="meta-pill"><div class="mdot md-p"></div><span>Output: <strong>PDF</strong></span></div>
+    <div class="meta-pill">&#9997;&#65039;<span>Format: <strong>Unstructured .fm</strong></span></div>
+  </div>
+</div>
+
+<!-- ═══ Disclaimer ═══ -->
+<div class="hero-disc">
+  <div>
+    <p class="full-width-disclaimer">
+      <span class="grad">Disclaimer:</span> This installation guide for Postman is created as part of my professional portfolio. The content is based on publicly available information and official documentation, and has been adapted for demonstration purposes only. No confidential or proprietary information is included.
+    </p>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    
+    <h1 class="hero-title">Postman Installation Guide</h1>
+    <div>
+     <div class="dl-meta">
+        <div class="dl-meta-item"><span class="dl-meta-dot"></span>TelecomHW_UserGuide.fm (Master)</div>
+        <div class="dl-meta-item"><span class="dl-meta-dot"></span>TelecomHW_Template.fm</div>
+        <div class="dl-meta-item"><span class="dl-meta-dot"></span>TelecomHW_UserGuide.pdf</div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:1px;flex-wrap:wrap">
+        <a href="#" class="btn-download" onclick="simulateDownload(event,'TelecomHW_FrameMaker_Package.zip')">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download Package
+        </a>
+        <a href="#" class="btn-download-secondary" onclick="simulateDownload(event,'TelecomHW_UserGuide.pdf')">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          Download PDF Only
+        </a>
+      </div>
+      <div id="dl-status" style="font-family:var(--ff-m);font-size:.72rem;color:var(--green);margin-top:10px;display:none">✓ Download started</div>
+    </div>    
+  </div>
+</div>
+
+<main>
+  <!-- DOCUMENT PREVIEW -->
+<div class="pdf-viewer">
+  <iframe 
+    src="Sample.pdf" 
+    width="100%" 
+    height="100%">
+  </iframe>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-copy">© 2026 Selvamani Madhaiyan</div>
+  <a href="index.html#portfolio" class="footer-link">← Back to Portfolio</a>
+</footer>
+
+<script>
+function simulateDownload(e, filename) {
+  e.preventDefault();
+  const status = document.getElementById('dl-status');
+  status.textContent = '✓ ' + filename + ' — download started (sample portfolio demo)';
+  status.style.display = 'block';
+  setTimeout(() => { status.style.display = 'none'; }, 4000);
+}
+</script><script id="smartTopbar">
+let lastScrollTop = 0;
+const topbar = document.querySelector('.topbar');
+const pdfViewer = document.querySelector('.pdf-viewer');
+
+window.addEventListener('scroll', function () {
+  const pdfTop = pdfViewer.getBoundingClientRect().top;
+  let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  // 👉 Only trigger hide/show AFTER pdf reaches topbar
+  if (pdfTop <= topbar.offsetHeight) {
+    
+    if (currentScroll > lastScrollTop) {
+      // scrolling DOWN → hide
+      topbar.classList.add('hide');
+    } else {
+      // scrolling UP → show
+      topbar.classList.remove('hide');
+    }
+
+  } else {
+    // BEFORE reaching PDF → always show
+    topbar.classList.remove('hide');
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
+</script>
+</body>
+</html>
